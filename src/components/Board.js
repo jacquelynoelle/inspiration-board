@@ -5,7 +5,7 @@ import axios from 'axios';
 import './Board.css';
 import Card from './Card';
 import NewCardForm from './NewCardForm';
-import CARD_DATA from '../data/card-data.json';
+// import CARD_DATA from '../data/card-data.json';
 
 class Board extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Board extends Component {
             return {
               text: card.card.text,
               emoji: card.card.emoji,
-              id: card.card.id
+              id: card.card.id,
             }
           })
           this.setState({ cards: newCards });
@@ -54,6 +54,24 @@ class Board extends Component {
       });
   }
 
+  addCard = (cardData) => {
+    const { url, boardName } = this.props
+    const fullURL = url + boardName + '/cards'
+    axios.post(fullURL, cardData)
+      .then((response) => {
+        const newCard = { ...response.data.card }
+        const updatedCards = this.state.cards;
+        updatedCards.push(newCard);
+
+        this.setState({cards: updatedCards});
+      })
+      .catch((error) => {
+        this.setState({
+          errorMessage: error.message,
+        });
+      });
+  }
+
   generateCardList = () => {
     const { cards } = this.state
 
@@ -66,9 +84,12 @@ class Board extends Component {
 
   render() {
     return (
-      <div className="board">
-        { this.generateCardList() }
-      </div>
+      <main>
+        <div className="board">
+          { this.generateCardList() }
+        </div>
+        <NewCardForm addCardCallback={ this.addCard } />
+      </main>
     )
   }
 
