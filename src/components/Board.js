@@ -85,6 +85,7 @@ class Board extends Component {
   render() {
     return (
       <main>
+        <aside className="validation-errors-display">{ this.state.errorMessage }</aside>
         <div className="board">
           { this.generateCardList() }
         </div>
