@@ -10,7 +10,6 @@ class Card extends Component {
   }
 
   generateEmoji = () => {
-    const emoji = require("emoji-dictionary");
     const { cardEmoji } = this.props
 
     return cardEmoji && emoji.getUnicode(cardEmoji);
@@ -19,8 +18,10 @@ class Card extends Component {
   render() {
     return (
       <div className="card">
-        { this.props.cardText }
-        { this.generateEmoji() }
+        <div className="card__content">
+          <span className="card__context-text">{ this.props.cardText }</span>
+          <span className="card__context-emoji">{ this.generateEmoji() }</span>
+        </div>
       </div>
     )
   }
