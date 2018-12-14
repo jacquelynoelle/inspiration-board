@@ -13,21 +13,37 @@ class Board extends Component {
 
     this.state = {
       cards: [],
+      errorMessage: '',
     };
   }
 
   componentDidMount() {
-    this.setState({
-      cards: CARD_DATA.cards,
-    });
+    const { url, boardName } = this.props
+    axios.get(url + boardName + '/cards')
+        .then((response) => {
+          const newCards = response.data.map((card) => {
+            return {
+              text: card.card.text,
+              emoji: card.card.emoji,
+            }
+          })
+          this.setState({ cards: newCards });
+        })
+        .catch((error) => {
+          this.setState({
+            errorMessage: error.message,
+          });
+        });
   }
 
   generateCardList = () => {
     const { cards } = this.state
 
-    return cards.map( (card, i) => {
-      return <Card key={ i } cardText={ card.text } cardEmoji={ card.emoji }/>
-    });
+    if (cards.length > 0) {
+      return cards.map( (card, i) => {
+        return <Card key={ i } cardText={ card.text } cardEmoji={ card.emoji }/>
+      });
+    }
   }
 
   render() {
@@ -41,7 +57,8 @@ class Board extends Component {
 }
 
 Board.propTypes = {
-
+  url: PropTypes.string.isRequired,
+  boardName: PropTypes.string.isRequired,
 };
 
 export default Board;
