@@ -32,7 +32,10 @@ class Board extends Component {
               id: card.card.id,
             }
           })
-          this.setState({ cards: newCards });
+          this.setState({
+            cards: newCards,
+            errorMessage: '',
+          });
         })
         .catch((error) => {
           this.setState({
@@ -46,6 +49,9 @@ class Board extends Component {
     axios.delete(deleteURL + cardID)
       .then((response) => {
         this.getCards();
+        this.setState({
+          errorMessage: '',
+        });
       })
       .catch((error) => {
         this.setState({
@@ -63,11 +69,14 @@ class Board extends Component {
         const updatedCards = this.state.cards;
         updatedCards.push(newCard);
 
-        this.setState({cards: updatedCards});
+        this.setState({
+          cards: updatedCards,
+          errorMessage: '',
+        });
       })
       .catch((error) => {
         this.setState({
-          errorMessage: error.message,
+          errorMessage: error.response.data.errors.text,
         });
       });
   }
@@ -85,11 +94,11 @@ class Board extends Component {
   render() {
     return (
       <main>
-        <aside className="validation-errors-display">{ this.state.errorMessage }</aside>
+        { this.state.errorMessage && <aside className="validation-errors-display validation-errors-display__list">{ this.state.errorMessage }</aside> }
         <div className="board">
+          <NewCardForm addCardCallback={ this.addCard } />
           { this.generateCardList() }
         </div>
-        <NewCardForm addCardCallback={ this.addCard } />
       </main>
     )
   }

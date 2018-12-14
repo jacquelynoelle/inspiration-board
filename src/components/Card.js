@@ -19,10 +19,10 @@ class Card extends Component {
     return (
       <div className="card">
         <div className="card__content">
-          <span className="card__context-text">{ this.props.cardText }</span>
-          <span className="card__context-emoji">{ this.generateEmoji() }</span>
+          <span className="card__content-text">{ this.props.cardText }</span>
+          <span className="card__content-emoji">{ this.generateEmoji() }</span>
         </div>
-        <button onClick={ this.deleteCard }className="card__delete">X</button>
+        <span onClick={ this.deleteCard } className="card__delete">X</span>
       </div>
     )
   }

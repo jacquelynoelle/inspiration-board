@@ -24,18 +24,18 @@ ShallowWrapper {
           className="card__content"
         >
           <span
-            className="card__context-text"
+            className="card__content-text"
           />
           <span
-            className="card__context-emoji"
+            className="card__content-emoji"
           />
         </div>,
-        <button
+        <span
           className="card__delete"
           onClick={[Function]}
         >
           X
-        </button>,
+        </span>,
       ],
       "className": "card",
     },
@@ -48,10 +48,10 @@ ShallowWrapper {
         "props": Object {
           "children": Array [
             <span
-              className="card__context-text"
+              className="card__content-text"
             />,
             <span
-              className="card__context-emoji"
+              className="card__content-emoji"
             />,
           ],
           "className": "card__content",
@@ -64,7 +64,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": undefined,
-              "className": "card__context-text",
+              "className": "card__content-text",
             },
             "ref": null,
             "rendered": null,
@@ -76,7 +76,7 @@ ShallowWrapper {
             "nodeType": "host",
             "props": Object {
               "children": undefined,
-              "className": "card__context-emoji",
+              "className": "card__content-emoji",
             },
             "ref": null,
             "rendered": null,
@@ -96,7 +96,7 @@ ShallowWrapper {
         },
         "ref": null,
         "rendered": "X",
-        "type": "button",
+        "type": "span",
       },
     ],
     "type": "div",
@@ -112,18 +112,18 @@ ShallowWrapper {
             className="card__content"
           >
             <span
-              className="card__context-text"
+              className="card__content-text"
             />
             <span
-              className="card__context-emoji"
+              className="card__content-emoji"
             />
           </div>,
-          <button
+          <span
             className="card__delete"
             onClick={[Function]}
           >
             X
-          </button>,
+          </span>,
         ],
         "className": "card",
       },
@@ -136,10 +136,10 @@ ShallowWrapper {
           "props": Object {
             "children": Array [
               <span
-                className="card__context-text"
+                className="card__content-text"
               />,
               <span
-                className="card__context-emoji"
+                className="card__content-emoji"
               />,
             ],
             "className": "card__content",
@@ -152,7 +152,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": undefined,
-                "className": "card__context-text",
+                "className": "card__content-text",
               },
               "ref": null,
               "rendered": null,
@@ -164,7 +164,7 @@ ShallowWrapper {
               "nodeType": "host",
               "props": Object {
                 "children": undefined,
-                "className": "card__context-emoji",
+                "className": "card__content-emoji",
               },
               "ref": null,
               "rendered": null,
@@ -184,7 +184,7 @@ ShallowWrapper {
           },
           "ref": null,
           "rendered": "X",
-          "type": "button",
+          "type": "span",
         },
       ],
       "type": "div",
