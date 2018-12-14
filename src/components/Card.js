@@ -15,6 +15,10 @@ class Card extends Component {
     return cardEmoji && emoji.getUnicode(cardEmoji);
   }
 
+  deleteCard = () => {
+    this.props.deleteCardCallback(this.props.id);
+  }
+
   render() {
     return (
       <div className="card">
@@ -22,13 +26,17 @@ class Card extends Component {
           <span className="card__context-text">{ this.props.cardText }</span>
           <span className="card__context-emoji">{ this.generateEmoji() }</span>
         </div>
+        <button onClick={ this.deleteCard }className="card__delete">X</button>
       </div>
     )
   }
 }
 
 Card.propTypes = {
-  cardText: PropTypes.string
+  id: PropTypes.number.isRequired,
+  cardText: PropTypes.string,
+  cardEmoji: PropTypes.string,
+  deleteCardCallback: PropTypes.func.isRequired,
 };
 
 export default Card;
